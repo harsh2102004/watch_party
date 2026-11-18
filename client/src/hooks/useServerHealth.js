@@ -7,8 +7,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getServerUrl, isConfigValid } from '../utils/config.js';
 
-const PING_INTERVAL_MS = 3000;
-const MAX_WAIT_SECONDS = 90;
+const PING_INTERVAL_MS = 2000;
+const MAX_WAIT_SECONDS = 120;
 
 export function useServerHealth() {
   const [isServerReady, setIsServerReady] = useState(false);
