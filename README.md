@@ -6,8 +6,9 @@ A real-time synchronized YouTube watch party application built with modern vanil
 
 ## 🚀 Live Demo & Deployment
 
-- **Frontend Client (Vercel)**: `https://watch-party-wine.vercel.app`
-- **Backend API & WebSockets (Render)**: `https://watch-party-1-d3jw.onrender.com`
+- **Frontend Client (Vercel)**: [https://watch-party-wine.vercel.app](https://watch-party-wine.vercel.app)
+- **Backend API & WebSockets (Render)**: [https://watch-party-1-d3jw.onrender.com](https://watch-party-1-d3jw.onrender.com)
+- **API Health Check**: [https://watch-party-1-d3jw.onrender.com/health](https://watch-party-1-d3jw.onrender.com/health)
 
 ---
 
@@ -30,6 +31,10 @@ A real-time synchronized YouTube watch party application built with modern vanil
 ## 🏗️ Architecture & Features
 
 - **Server-Authoritative Sync**: Video time is calculated on the fly via mathematical extrapolation ($t_{\text{now}} = t_{\text{base}} + \Delta t$), avoiding packet spam.
+- **In-Video Glassmorphic Overlay Controls**: Full-width seek scrubber, large center play button overlay when paused, ±10s skips, monospace time indicator, auto-hiding during playback, and one-click true full-screen mode directly inside the video viewport.
+- **Minimise & Maximise Chat Drawer**: Dynamic toggle buttons (`−` / `+` and `🗖` / `🗗`) to collapse or expand the chat to free up viewing space or review long history.
+- **Universal YouTube Format Support**: Supports standard YouTube watch URLs (`/watch?v=`), shortened (`youtu.be/`), Shorts (`/shorts/`), Live Streams (`/live/`), and direct 11-character video IDs.
+- **Direct Room & Invite Link Routing**: Configured with `vercel.json` SPA rewrites for seamless direct URL navigation (`/room/:roomId`) without 404 errors.
 - **Granular RBAC**:
   - `HOST`: Master playback control, video changes, role promotions/demotions, participant removal, and request approvals.
   - `MODERATOR`: Playback control, video changes, and request approvals.
@@ -38,6 +43,30 @@ A real-time synchronized YouTube watch party application built with modern vanil
 - **Auto-Promotion**: If the host disconnects, the server automatically promotes the earliest-joined moderator (or participant).
 - **Multi-Origin CORS & Cloud Deployment**: Configured for Render backend (`0.0.0.0` binding, graceful `SIGTERM` shutdown) and Vercel frontend (`*.vercel.app` preview branch support).
 - **Cold-Start Warm-up**: Frontend probes `/health` on load with a friendly animated screen to wake sleeping cloud containers.
+
+---
+
+## 💻 Running Locally
+
+### 1. Prerequisites
+- **Node.js**: v20.x or v18.x
+- **MongoDB**: Local MongoDB or MongoDB Atlas URI
+
+### 2. Start Backend Server
+```bash
+cd server
+npm install
+npm run dev
+# Server runs on http://localhost:4000
+```
+
+### 3. Start Frontend Client
+```bash
+cd client
+npm install
+npm run dev
+# App runs on http://localhost:5173
+```
 
 ---
 
