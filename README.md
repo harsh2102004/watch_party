@@ -6,7 +6,7 @@ A real-time synchronized YouTube watch party application built with modern vanil
 
 ## 🚀 Live Demo & Deployment
 
-- **Frontend Client (Vercel)**: `https://watch-party-client.vercel.app` *(Placeholder)*
+- **Frontend Client (Vercel)**: `https://watch-party-wine.vercel.app`
 - **Backend API & WebSockets (Render)**: `https://watch-party-1-d3jw.onrender.com`
 
 ---
