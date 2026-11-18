@@ -1,0 +1,128 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg-primary, #090d16);
+  position: relative;
+  overflow: hidden;
+}
+
+.ambientGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
+  pointer-events: none;
+}
+
+.card {
+  max-width: 480px;
+  width: 100%;
+  background: var(--card-bg, #111827);
+  border: 1px solid var(--border-color, #1e293b);
+  border-radius: 1.25rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+}
+
+.spinnerWrapper {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.5rem;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  border: 4px solid rgba(99, 102, 241, 0.15);
+  border-top-color: var(--primary, #6366f1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinnerIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text-primary, #f8fafc);
+  margin: 0 0 0.75rem;
+}
+
+.message {
+  font-size: 0.9rem;
+  color: var(--text-muted, #94a3b8);
+  line-height: 1.5;
+  margin: 0 0 1.5rem;
+}
+
+.timerBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: #a5b4fc;
+  margin-bottom: 1.5rem;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6366f1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.note {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.retryBtn {
+  background: var(--primary, #6366f1);
+  color: #ffffff;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.retryBtn:hover {
+  opacity: 0.9;
+}

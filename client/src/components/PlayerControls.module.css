@@ -1,0 +1,143 @@
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Time & Seek Bar Section */
+.seekSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.timeRow {
+  display: flex;
+  justifyContent: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.currentTime {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.durationTime {
+  color: var(--text-muted);
+}
+
+.seekBarWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.rangeInput {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+  transition: height 0.15s ease;
+}
+
+.rangeInput:hover:not(:disabled) {
+  height: 8px;
+}
+
+.rangeInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Custom Webkit Thumb */
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+  transition: transform 0.1s ease;
+}
+
+.rangeInput::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Custom Firefox Thumb */
+.rangeInput::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}
+
+/* Action Buttons Section */
+.buttonRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.playbackGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.playPauseButton {
+  min-width: 110px;
+}
+
+.roleNotice {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Change Video Section */
+.changeVideoForm {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 0.25rem;
+}
+
+.inputWrapper {
+  flex: 1;
+}
+
+.disabledBanner {
+  padding: 0.6rem 0.85rem;
+  background-color: var(--bg-elevated);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
