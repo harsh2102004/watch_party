@@ -33,6 +33,18 @@ app.use(express.json());
 // Mount authentication API
 app.use("/auth", authRouter);
 
+/**
+ * Root endpoint returning friendly API status.
+ */
+app.get("/", (req, res) => {
+  res.json({
+    service: "Watch Party Backend API",
+    status: "online",
+    health: "/health",
+    message: "This is the WebSocket & API server. Open the Vercel frontend in your browser to use the app."
+  });
+});
+
 export const server = http.createServer(app);
 
 export const io = new Server(server, {
