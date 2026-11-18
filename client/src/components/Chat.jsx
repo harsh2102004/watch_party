@@ -34,6 +34,8 @@ function formatChatTime(timestamp) {
 export function Chat({ className = '' }) {
   const { chat = [], me, sendChatMessage } = useRoom();
   const [inputText, setInputText] = useState('');
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
   const messageListRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -76,24 +78,60 @@ export function Chat({ className = '' }) {
     handleSendMessage();
   };
 
+  const cardClass = [
+    styles.chatCard,
+    isMinimized ? styles.chatCardMinimized : '',
+    isMaximized ? styles.chatCardMaximized : '',
+    className,
+  ].filter(Boolean).join(' ');
+
   return (
-    <div className={`${styles.chatCard} ${className}`}>
-      {/* Header bar */}
+    <div className={cardClass}>
+      {/* Header bar with Minimize & Maximize Actions */}
       <div className={styles.chatHeader}>
         <div className={styles.chatTitle}>
-          <span>Room Chat</span>
+          <span>💬 Room Chat</span>
           <span className={styles.chatCountBadge}>{chat.length}</span>
+        </div>
+
+        <div className={styles.headerActions}>
+          <button
+            type="button"
+            className={styles.headerBtn}
+            onClick={() => {
+              if (isMinimized) setIsMinimized(false);
+              setIsMaximized(!isMaximized);
+            }}
+            title={isMaximized ? 'Restore normal height' : 'Maximize chat'}
+            aria-label={isMaximized ? 'Restore normal height' : 'Maximize chat'}
+          >
+            {isMaximized ? '🗗' : '🗖'}
+          </button>
+          <button
+            type="button"
+            className={styles.headerBtn}
+            onClick={() => {
+              if (isMaximized) setIsMaximized(false);
+              setIsMinimized(!isMinimized);
+            }}
+            title={isMinimized ? 'Expand chat' : 'Minimize chat'}
+            aria-label={isMinimized ? 'Expand chat' : 'Minimize chat'}
+          >
+            {isMinimized ? '+' : '−'}
+          </button>
         </div>
       </div>
 
-      {/* Scrollable message list */}
-      <div
-        ref={messageListRef}
-        className={styles.messageList}
-        role="log"
-        aria-live="polite"
-        aria-label="Room chat messages"
-      >
+      {!isMinimized && (
+        <>
+          {/* Scrollable message list */}
+          <div
+            ref={messageListRef}
+            className={styles.messageList}
+            role="log"
+            aria-live="polite"
+            aria-label="Room chat messages"
+          >
         {chat.length === 0 ? (
           <div className={styles.emptyState}>
             <span className={styles.emptyIcon} aria-hidden="true">&#128172;</span>
@@ -206,6 +244,8 @@ export function Chat({ className = '' }) {
           </span>
         </div>
       </form>
+        </>
+      )}
     </div>
   );
 }

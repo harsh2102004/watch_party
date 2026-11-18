@@ -7,6 +7,7 @@ import {
   Badge,
   Modal,
   YouTubePlayer,
+  VideoOverlayControls,
   PlayerControls,
   ActionRequestPanel,
   ParticipantsList,
@@ -79,7 +80,27 @@ export function Room() {
   // Prompt Modal State (when user opens /room/:roomId directly without active session)
   const isJoined = roomId === cleanRoomId && Boolean(me);
   const playerRef = useRef(null);
+  const playerWrapperRef = useRef(null);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [isPlayerHovered, setIsPlayerHovered] = useState(false);
+  const hoverTimeoutRef = useRef(null);
+
+  const handlePlayerMouseMove = useCallback(() => {
+    setIsPlayerHovered(true);
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsPlayerHovered(false);
+    }, 2500);
+  }, []);
+
+  const handlePlayerMouseLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setIsPlayerHovered(false);
+  }, []);
   const [modalUsername, setModalUsername] = useState(user?.username || '');
   const [usernameError, setUsernameError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -364,8 +385,15 @@ export function Room() {
       <main className={styles.mainLayout}>
         {/* Left Column: Player & Controls */}
         <section className={styles.leftColumn}>
-          {/* Synchronized YouTube IFrame Player with Floating Reaction Overlay */}
-          <div className={styles.playerWrapper} style={{ position: 'relative' }}>
+          {/* Synchronized YouTube IFrame Player with In-Video Controls & Floating Reaction Overlay */}
+          <div
+            className={styles.playerWrapper}
+            ref={playerWrapperRef}
+            style={{ position: 'relative' }}
+            onMouseEnter={() => setIsPlayerHovered(true)}
+            onMouseMove={handlePlayerMouseMove}
+            onMouseLeave={handlePlayerMouseLeave}
+          >
             <YouTubePlayer
               ref={playerRef}
               videoId={syncState.videoId}
@@ -375,13 +403,20 @@ export function Room() {
             />
             {/* Floating reaction animation viewport overlay */}
             <ReactionOverlay showBar={false} />
+
+            {/* In-Video Controls: Play, Pause, Seekbar, Skips, Timestamp inside video */}
+            <VideoOverlayControls
+              playerRef={playerRef}
+              videoContainerRef={playerWrapperRef}
+              isHovered={isPlayerHovered}
+            />
           </div>
+
+          {/* Change Video Stream Input */}
+          <PlayerControls />
 
           {/* Emoji Reaction Bar (6 Whitelisted Emojis) */}
           <ReactionOverlay showBar={true} />
-
-          {/* Synchronized Playback Controls (Seek bar, play/pause, skips, change video) */}
-          <PlayerControls playerRef={playerRef} />
 
           {/* Action Request Panel (For Participant / Viewer suggestion queue) */}
           <ActionRequestPanel />

@@ -1,0 +1,250 @@
+.overlayWrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 15;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* Center Play Button Overlay */
+.centerOverlay {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bigPlayButton {
+  pointer-events: auto;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.85);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-left: 4px; /* optical center for triangle */
+}
+
+.bigPlayButton:hover {
+  transform: scale(1.1);
+  background: rgba(99, 102, 241, 1);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.bigPlayButton:active {
+  transform: scale(0.95);
+}
+
+/* Bottom Glassmorphic Control Bar */
+.bottomControls {
+  pointer-events: auto;
+  background: linear-gradient(to top, rgba(7, 9, 15, 0.95) 0%, rgba(7, 9, 15, 0.7) 60%, transparent 100%);
+  padding: 1.5rem 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Seek Bar Track */
+.seekBarContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.rangeInput {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+  transition: height 0.15s ease, background 0.15s ease;
+}
+
+.rangeInput:hover:not(:disabled) {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.rangeInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Scrubber Thumb */
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #818cf8;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.8);
+  transition: transform 0.15s ease;
+}
+
+.rangeInput:hover:not(:disabled)::-webkit-slider-thumb {
+  transform: scale(1.25);
+  background: #6366f1;
+}
+
+.rangeInput::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #818cf8;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.8);
+}
+
+/* Control Buttons Row */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.leftControls {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.rightControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* In-Video Action Buttons */
+.ctrlBtn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ctrlBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.ctrlBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.ctrlBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.playBtn {
+  background: #6366f1;
+  border-color: #818cf8;
+  padding: 0.4rem 0.85rem;
+  min-width: 80px;
+  justify-content: center;
+}
+
+.playBtn:hover:not(:disabled) {
+  background: #4f46e5;
+  border-color: #a5b4fc;
+}
+
+/* Time Indicator */
+.timeDisplay {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeCurrent {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.timeDivider {
+  margin: 0 0.25rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.timeDuration {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Role Banner on Overlay */
+.rolePill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+.rolePillViewer {
+  background: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+/* Fullscreen Toggle Button */
+.fullscreenBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.fullscreenBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

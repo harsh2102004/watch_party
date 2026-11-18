@@ -1,11 +1,21 @@
 .chatCard {
   display: flex;
   flex-direction: column;
-  height: 420px;
+  height: 400px;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chatCardMinimized {
+  height: 48px;
+}
+
+.chatCardMaximized {
+  height: 620px;
 }
 
 .chatHeader {
@@ -16,6 +26,37 @@
   background-color: var(--bg-elevated);
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
+  user-select: none;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.headerBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.headerBtn:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+  transform: scale(1.05);
 }
 
 .chatTitle {

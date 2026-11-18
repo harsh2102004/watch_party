@@ -1,5 +1,6 @@
 export * from './common/index.js';
 export { YouTubePlayer } from './YouTubePlayer.jsx';
+export { VideoOverlayControls } from './VideoOverlayControls.jsx';
 export { PlayerControls } from './PlayerControls.jsx';
 export { ActionRequestPanel } from './ActionRequestPanel.jsx';
 export { ParticipantsList } from './ParticipantsList.jsx';
