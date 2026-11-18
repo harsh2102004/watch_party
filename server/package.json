@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "smoke:local": "node scripts/smoke-test.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

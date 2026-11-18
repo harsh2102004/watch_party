@@ -60,6 +60,10 @@ export function SocketProvider({ children, serverUrl = getServerUrl() || 'http:/
   useEffect(() => {
     if (!socket) return;
 
+    if (!socket.connected) {
+      socket.connect();
+    }
+
     const onConnect = () => {
       setIsConnected(true);
       setConnectionStatus('connected');
@@ -114,7 +118,6 @@ export function SocketProvider({ children, serverUrl = getServerUrl() || 'http:/
       socket.io.off('reconnect_attempt', onReconnectAttempt);
       socket.io.off('reconnect', onReconnect);
       socket.io.off('reconnect_failed', onReconnectFailed);
-      socket.disconnect();
     };
   }, [socket]);
 
