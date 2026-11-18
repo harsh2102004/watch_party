@@ -66,6 +66,13 @@ export function extractVideoId(input) {
         const id = parts[shortsIdx + 1];
         return YOUTUBE_ID_REGEX.test(id) ? id : null;
       }
+
+      // Case E: youtube.com/live/<id>
+      const liveIdx = parts.indexOf('live');
+      if (liveIdx !== -1 && parts[liveIdx + 1]) {
+        const id = parts[liveIdx + 1];
+        return YOUTUBE_ID_REGEX.test(id) ? id : null;
+      }
     }
 
     return null;

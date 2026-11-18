@@ -67,6 +67,12 @@ export function extractVideoId(input) {
         const id = url.pathname.split('/')[2];
         return id && YOUTUBE_ID_REGEX.test(id) ? id : null;
       }
+
+      // /live/<id>
+      if (url.pathname.startsWith('/live/')) {
+        const id = url.pathname.split('/')[2];
+        return id && YOUTUBE_ID_REGEX.test(id) ? id : null;
+      }
     }
   } catch {
     // URL parsing failed
