@@ -16,15 +16,15 @@ A real-time synchronized YouTube watch party application built with modern vanil
 
 | View | Screenshot | Caption |
 | :--- | :---: | :--- |
-| **01. Lobby / Landing** | ![Landing Page](docs/screenshots/01-landing.png) | Landing page with Create Room and Join Room forms and real-time server connectivity status. |
-| **02. Host Room View** | ![Host View](docs/screenshots/02-host-room.png) | Host view with full synchronized video controls, seek bar, and active participants list. |
-| **03. Participant Room View** | ![Participant View](docs/screenshots/03-participant-room.png) | Participant view with disabled playback controls and collaborative Action Request panel. |
-| **04. Moderation Approval Panel** | ![Approval Panel](docs/screenshots/04-approval-panel.png) | Host/moderator approval queue displaying incoming participant playback requests. |
-| **05. Role Management Menu** | ![Role Management](docs/screenshots/05-role-menu.png) | Host-only participant administration menu for role assignment (Moderator/Viewer) and eviction. |
-| **06. Live Chat & Floating Reactions** | ![Chat & Reactions](docs/screenshots/06-chat-reactions.png) | Real-time chat messages with sanitization and animated emoji reactions floating over the player. |
-| **07. User Authentication** | ![Authentication](docs/screenshots/07-login.png) | User sign-in view with form validation, JWT session handling, and guest mode fallback. |
-| **08. Mobile Responsive Layout** | ![Mobile View](docs/screenshots/08-mobile.png) | Adaptive room interface optimized for mobile viewports (390px width). |
-| **09. Participant Eviction** | ![Eviction Alert](docs/screenshots/09-removed.png) | Eviction notification and automatic channel disconnection screen for removed users. |
+| **01. Lobby / Landing** | ![Landing Page](assets/screenshots/01-landing.png) | Landing page with Create Room and Join Room forms and real-time server connectivity status. |
+| **02. Host Room View** | ![Host View](assets/screenshots/02-host-room.png) | Host view with full synchronized video controls, seek bar, and active participants list. |
+| **03. Participant Room View** | ![Participant View](assets/screenshots/03-participant-room.png) | Participant view with disabled playback controls and collaborative Action Request panel. |
+| **04. Moderation Approval Panel** | ![Approval Panel](assets/screenshots/04-approval-panel.png) | Host/moderator approval queue displaying incoming participant playback requests. |
+| **05. Role Management Menu** | ![Role Management](assets/screenshots/05-role-menu.png) | Host-only participant administration menu for role assignment (Moderator/Viewer) and eviction. |
+| **06. Live Chat & Floating Reactions** | ![Chat & Reactions](assets/screenshots/06-chat-reactions.png) | Real-time chat messages with sanitization and animated emoji reactions floating over the player. |
+| **07. User Authentication** | ![Authentication](assets/screenshots/07-login.png) | User sign-in view with form validation, JWT session handling, and guest mode fallback. |
+| **08. Mobile Responsive Layout** | ![Mobile View](assets/screenshots/08-mobile.png) | Adaptive room interface optimized for mobile viewports (390px width). |
+| **09. Participant Eviction** | ![Eviction Alert](assets/screenshots/09-removed.png) | Eviction notification and automatic channel disconnection screen for removed users. |
 
 ---
 
