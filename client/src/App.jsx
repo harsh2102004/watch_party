@@ -37,7 +37,6 @@ function ReconnectingBannerBridge() {
 function MainApp() {
   const {
     isServerReady,
-    elapsedSeconds,
     isTimedOut,
     isConfigMissing,
     retry,
@@ -52,7 +51,6 @@ function MainApp() {
   if (!isServerReady) {
     return (
       <ColdStartScreen
-        elapsedSeconds={elapsedSeconds}
         isTimedOut={isTimedOut}
         onRetry={retry}
       />

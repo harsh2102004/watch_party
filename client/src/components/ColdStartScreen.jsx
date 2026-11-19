@@ -1,12 +1,12 @@
 /**
  * @file ColdStartScreen.jsx
- * @description Friendly loading screen displayed while pinging a sleeping Render backend container.
+ * @description Clean waiting/loading screen displayed while connecting to the backend server.
  */
 
 import React from 'react';
 import styles from './ColdStartScreen.module.css';
 
-export function ColdStartScreen({ elapsedSeconds, isTimedOut, onRetry }) {
+export function ColdStartScreen({ isTimedOut, onRetry }) {
   return (
     <div className={styles.container}>
       <div className={styles.ambientGlow} />
@@ -14,22 +14,22 @@ export function ColdStartScreen({ elapsedSeconds, isTimedOut, onRetry }) {
       <div className={styles.card}>
         <div className={styles.spinnerWrapper}>
           <div className={styles.spinner} />
-          <span className={styles.spinnerIcon}>⚡</span>
+          <span className={styles.spinnerIcon}>🎬</span>
         </div>
 
         <h2 className={styles.title}>
-          {isTimedOut ? 'Server Wakeup Delay' : 'Waking up the party server...'}
+          {isTimedOut ? 'Connecting is taking a while' : 'Connecting to server...'}
         </h2>
 
         <p className={styles.message}>
           {isTimedOut
-            ? 'The backend server on Render took longer than expected to boot. Please retry or check service status.'
-            : 'Render free-tier instances sleep during inactivity. We are spinning up the backend container now.'}
+            ? 'The server is taking longer than usual to respond. Please check your internet connection or click retry.'
+            : 'Please wait a moment while we establish a secure connection to the watch party server.'}
         </p>
 
-        <div className={styles.timerBox}>
+        <div className={styles.statusBox}>
           <span className={styles.pulseDot} />
-          <span>Elapsed: {elapsedSeconds}s / ~50s</span>
+          <span>{isTimedOut ? 'Waiting for response...' : 'Please wait...'}</span>
         </div>
 
         {isTimedOut && (
@@ -39,11 +39,9 @@ export function ColdStartScreen({ elapsedSeconds, isTimedOut, onRetry }) {
             </button>
           </div>
         )}
-
-        <p className={styles.note}>
-          Once the server acknowledges health status, you will be directed straight to the rooms.
-        </p>
       </div>
     </div>
   );
 }
+
+export default ColdStartScreen;
