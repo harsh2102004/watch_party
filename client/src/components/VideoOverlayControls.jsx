@@ -34,6 +34,8 @@ export function VideoOverlayControls({
   const [isScrubbing, setIsScrubbing] = useState(false);
   const [scrubTime, setScrubTime] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [volume, setVolume] = useState(100);
+  const [isMuted, setIsMuted] = useState(false);
 
   // ---------------------------------------------------------------------------
   // Duration Polling
@@ -141,6 +143,43 @@ export function VideoOverlayControls({
     seek(target);
   };
 
+  // ---------------------------------------------------------------------------
+  // Volume Handlers
+  // ---------------------------------------------------------------------------
+  const handleToggleMute = () => {
+    if (!playerRef?.current) return;
+    if (isMuted || volume === 0) {
+      playerRef.current.unMute?.();
+      const restoredVol = volume === 0 ? 60 : volume;
+      playerRef.current.setVolume?.(restoredVol);
+      setVolume(restoredVol);
+      setIsMuted(false);
+    } else {
+      playerRef.current.mute?.();
+      setIsMuted(true);
+    }
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVol = parseInt(e.target.value, 10);
+    setVolume(newVol);
+    if (!playerRef?.current) return;
+    playerRef.current.setVolume?.(newVol);
+    if (newVol === 0) {
+      playerRef.current.mute?.();
+      setIsMuted(true);
+    } else if (isMuted) {
+      playerRef.current.unMute?.();
+      setIsMuted(false);
+    }
+  };
+
+  const getVolumeIcon = () => {
+    if (isMuted || volume === 0) return '🔇';
+    if (volume < 50) return '🔉';
+    return '🔊';
+  };
+
   if (!hasVideo) {
     return null;
   }
@@ -235,6 +274,33 @@ export function VideoOverlayControls({
               <span className={styles.timeDuration}>
                 {duration > 0 ? formatTime(duration) : '--:--'}
               </span>
+            </div>
+
+            {/* Volume Button & Slider */}
+            <div className={styles.volumeGroup}>
+              <button
+                type="button"
+                className={styles.volumeBtn}
+                onClick={handleToggleMute}
+                title={isMuted ? 'Unmute audio' : 'Mute audio'}
+                aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
+              >
+                {getVolumeIcon()}
+              </button>
+
+              <div className={styles.volumeSliderContainer}>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value={isMuted ? 0 : volume}
+                  onChange={handleVolumeChange}
+                  className={styles.volumeSlider}
+                  aria-label="Volume slider"
+                  title={`Volume: ${isMuted ? 0 : volume}%`}
+                />
+              </div>
             </div>
           </div>
 

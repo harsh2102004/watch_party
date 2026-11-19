@@ -144,6 +144,48 @@ export const YouTubePlayer = forwardRef(function YouTubePlayer(
         }
         return -1;
       },
+      /** Sets player volume (0 - 100) */
+      setVolume: (vol) => {
+        if (playerRef.current && isReadyRef.current) {
+          try {
+            playerRef.current.setVolume(vol);
+          } catch {}
+        }
+      },
+      /** Gets player volume (0 - 100) */
+      getVolume: () => {
+        if (playerRef.current && isReadyRef.current) {
+          try {
+            return playerRef.current.getVolume();
+          } catch {}
+        }
+        return 100;
+      },
+      /** Mutes player audio */
+      mute: () => {
+        if (playerRef.current && isReadyRef.current) {
+          try {
+            playerRef.current.mute();
+          } catch {}
+        }
+      },
+      /** Unmutes player audio */
+      unMute: () => {
+        if (playerRef.current && isReadyRef.current) {
+          try {
+            playerRef.current.unMute();
+          } catch {}
+        }
+      },
+      /** Checks if player is muted */
+      isMuted: () => {
+        if (playerRef.current && isReadyRef.current) {
+          try {
+            return playerRef.current.isMuted();
+          } catch {}
+        }
+        return false;
+      },
       /** Checks whether the player is fully initialized */
       isReady: () => isReadyRef.current,
       /** Returns raw YT.Player instance */
